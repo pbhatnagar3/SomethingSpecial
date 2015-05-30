@@ -1,0 +1,21 @@
+{% extends "base.html" %}
+
+{% block content %}
+<title>Entry: {{entry[0]}}</title>
+<div id='row'>
+{% if entry %}
+  <h1> {{entry[0]}}</h1>
+
+<br>
+<br>
+
+{% for message in entry[1:] %}
+  	<h1> {{ message }}</h1>
+  {% endfor %}
+
+{% else %}
+  <h1>Hello World!</h1>
+{% endif %}
+
+</div>
+{% endblock %}
