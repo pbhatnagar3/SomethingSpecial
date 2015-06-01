@@ -1,23 +1,48 @@
 {% extends "base.html" %}
+{% block extrahead %}
+	<link rel="stylesheet" type="text/css" href="/static/css/entry.css">
 
+{% endblock %}
 {% block content %}
-<title>Entry: {{entry[0]}}</title>
+  <h1>{{date}}</h1>
+  <h2> {{title.upper()}}</h2>
 
-<div id='row'>
-{% if entry %}
-  <h1> {{entry[0]}}</h1>
-<img src={{image}} alt="Smiley face" height="700" width="900" >
+<div class="row">
+<hr>
+	<div class="col-md-6">
+		<img src={{image}} alt="Smiley face" >
+	</div>
 
-<br>
-<br>
-
-{% for message in entry[1:] %}
-  	<h1> {{ message }}</h1>
-  {% endfor %}
-
-{% else %}
-  <h1>Hello World!</h1>
-{% endif %}
-
+	<div class="col-md-6">
+		<img src={{image}} alt="Smiley face" >
+	</div>
 </div>
+
+<div class="row">
+<hr>
+	<h1> HIGHLIGHT</h1>
+
+	<div class="col-md-12 col-md-offset-1">
+		<ul>
+		{% for message in highlight.split('.') %}
+		  	<li> {{ message }}</li>
+		{% endfor %}
+		</ul>
+	</div>
+</div>
+
+<div class="row">
+<hr>
+	<h1>{{specific_title}}</h1>
+
+	<div class="col-md-12 col-md-offset-1">
+		<ul>
+		{% for message in specific_content.split('.') %}
+		  	<li> {{ message }}</li>
+		{% endfor %}
+		</ul>
+	</div>
+</div>
+
+
 {% endblock %}
