@@ -12,7 +12,7 @@ def hello_world():
 	return 'Hello world'
 
 @app.route('/entries')
-def entries(entry='May27'):
+def entries(entry='May26'):
 	entry_loc = 'static/DailyEntries/' + entry + '.json'
 	image = '/static/images/' + entry + '.jpg'
 	print "image URL", image
