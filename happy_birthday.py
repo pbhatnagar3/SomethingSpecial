@@ -1,15 +1,18 @@
-from flask import Flask
-from flask import render_template
-import os
-import json
-from pprint import pprint
-
+from flask import Flask, render_template, request, redirect, url_for
+import os, json
 
 app = Flask(__name__)
 
-@app.route('/')
-def hello_world():
-	return 'Hello world'
+@app.route('/pick-a-date', methods=['GET', 'POST'])
+def happy_birthday():
+	if request.method == 'GET':
+		return render_template('index.html')
+	elif request.method == 'POST':
+		f = request.form
+		print "selected date : ", f['date']
+		return entries(f['date'])
+	else:
+		return 'wtf'
 
 @app.route('/entries')
 def entries(entry='May26'):
@@ -22,6 +25,7 @@ def entries(entry='May26'):
 	    json_content = json.load(data_file)
 	print json_content
 	specific_title = "Specific Title"
+	
 	return render_template('entries.html', 
 		date=json_content['date'],
 	 	title = json_content['title'],
